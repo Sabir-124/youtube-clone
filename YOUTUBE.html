@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport">
+    <title>Youtube clone</title>
+    <link rel="stylesheet" href="CSS/youtube.css">
+    <link rel="icon" type="image/youtube-icon" href="sidebar-pics/youtube-icon.png">
+    <style>
+        @media only screen and (min-width: 877px) and (max-width: 1396px) {
+          .pic {
+            content: url(header-pics/account-logo.jpg);
+          }
+        }
+        .loading-line {
+          position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: rgb(188, 7, 7); transform: scaleX(0); transform-origin: left;
+          transition: transform 1s ease; z-index: 9999;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <div class="left-section">
+        <div id="icon-of-menu">
+          <button id="toggle-ham-icon" class="ham-icon">
+            <img class="hamburger-icon" src="header-pics/hamburger-icon.png" alt="Visit Example Website">
+          </button>
+          <div id="sideBar" class="sideBar">
+            <div id="sideBar-header">
+              <div>
+                <button id="close-toggle-ham-icon" class="ham-icon">
+                  <img class="hamburger-icon" src="header-pics/hamburger-icon.png" alt="Visit Example Website">
+                </button>
+              </div>
+              <div class="youtube-logo">
+                <a href="https://www.youtube.com/">
+                  <img class="light-youtube" src="header-pics/youtube-icon.png" alt="Visit Example Website">
+                  <div class="PK">
+                    PK
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div id="sidebar-elements">
+              <div class="render-slideBar-options1"></div>
+              <div class="render-slideBar-options2"></div>
+              <div class="render-explore-options"></div>
+              <div class="render-youtube-options"></div>
+              <div class="render-more-options"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="youtube-logo">
+          <a href="https://www.youtube.com/">
+            <img class="light-youtube" src="header-pics/youtube-icon.png" alt="Visit Example Website">
+            <div class="PK">
+              PK
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="middle-section">
+        <div class="place-of-search">
+          <input id="Search-place" type="text" placeholder="Search">
+        </div>
+        <div class="icon-of-search">
+          <div class="js-search-button">
+            <img class="search-icon" src="header-pics/search-icon-png.webp" alt="Visit Example Website">
+          </div>
+          <div class="text">
+            <p>Search</p>
+          </div>
+        </div>
+        <div style="margin-top: 4px;" class="icon-of-mic">
+          <div>
+            <img style="padding: 8px;" class="mic-icon" src="header-pics/mic-icon.png" alt="Visit Example Website">
+          </div>
+          <div class="text">
+            <p>Search with your voice</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-section">
+        <div class="icon-of-create">
+          <div>
+            <img class="create-icon" src="header-pics/create-icon.webp" alt="Visit Example Website">
+          </div>
+          <div class="text">
+            Create
+          </div>
+        </div>
+        <div class="icon-of-notification">
+          <div>
+            <img class="notification-icon" src="header-pics/notification-icon.png" alt="Visit Example Website">
+          </div>
+          <div class="text">
+            Notifications
+          </div>
+        </div>
+        <div class="logo-of-account">
+          <img class="account-logo" src="header-pics/account-logo.jpg" alt="Visit Example Website">
+        </div>
+      </div>
+
+      <div id="overlay"></div>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+      <div class="render-slidebar"></div>
+    </div>
+
+    <div class="row js-row">
+      <div id="overlay"></div>
+    </div>
+
+    <div class="loading-line" id="loading-line"></div>
+
+
+    <script type="module" src="JS/youtube.js"></script>
+    <script type="module" src="JS/slidebar/slide-bar.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const loadingLine = document.getElementById('loading-line');
+
+        // Function to start the loading animation
+        function startLoading() {
+          loadingLine.style.transform = 'scaleX(1)';
+        }
+
+        // Function to reset the loading animation
+        function resetLoading() {
+          loadingLine.style.transform = 'scaleX(0)';
+        }
+
+        // Trigger the loading animation on link clicks
+        document.querySelectorAll('a').forEach((anchor) => {
+          anchor.addEventListener('click', function(event) {
+            // Prevent default link behavior to show the loading line first
+            event.preventDefault();
+            startLoading();
+
+            // Redirect after a short delay to allow the animation to show
+            setTimeout(() => {
+              window.location.href = this.href;
+            }, 500);
+          });
+        });
+
+        // You can reset the loading bar after page load completes
+        window.addEventListener('load', resetLoading);
+    });
+
+    </script>
+
+  </body>
+</html>
